@@ -1,0 +1,21 @@
+# SetEnv CI_ENV production
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css|css)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+
+# Config Staging
+RewriteCond %{HTTP_HOST} ^staging\.domain\.com$
+RewriteRule (.*) $1 [E=CI_ENV:staging]
+
+# Config for development
+RewriteCond %{HTTP_HOST} ^127.0.0.1$
+RewriteRule (.*) $1 [E=CI_ENV:development]

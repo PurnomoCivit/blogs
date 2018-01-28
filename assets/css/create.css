@@ -1,0 +1,229 @@
+body {
+	background-color: #d8d2d2;
+}
+
+
+.bd-featurette {
+	background-color: #ffffff;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0 10px 0;
+}
+
+.create-blog {
+	background-color: #ffffff;
+	height: 650px	
+}
+
+.blog-title h3{
+	text-align: center;
+}
+
+.scroll-privacy{
+	height:180px;
+	width:100%;
+	border:1px solid #ccc;
+	font:16px/26px Georgia, Garamond, Serif;
+	overflow:auto;
+}
+
+.form-check{
+	text-align: center;
+}
+
+.btn-form-center{
+	width: 100%;
+	padding: 0 20px 20px 20px;
+	text-align: center;
+}
+
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}
+
+/** Default button **/
+.btn-breadcrumb .btn.btn-default:not(:last-child):after {
+  border-left: 10px solid #fff;
+}
+.btn-breadcrumb .btn.btn-default:not(:last-child):before {
+  border-left: 10px solid #ccc;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):after {
+  border-left: 10px solid #ebebeb;
+}
+.btn-breadcrumb .btn.btn-default:hover:not(:last-child):before {
+  border-left: 10px solid #adadad;
+}
+a.btn.btn-default:hover, a.btn.btn-default.active{
+	background-color: #ebebeb;
+}
+
+a.btn.btn-default.active:not(:last-child):after{
+  	border-left: 10px solid #ebebeb;
+}
+
+a.btn.btn-default.active:not(:last-child):before{
+  	border-left: 10px solid #ffffff;
+}
+
+.template1{
+	width: 500px;
+	background: url('./../img/template1.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.template2{
+	width: 500px;
+	background: url('./../img/template2.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+
+.template1.active{
+	background: url('./../img/template1.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.template2.active{
+	background: url('./../img/template2.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.template1.focus.active{
+	background: url('./../img/template1.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.template2.focus.active{
+	background: url('./../img/template2.png');
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.finish{
+	text-align: center;
+}
+
+@media (max-width: 400px){
+	a.btn.btn-default{
+		font-size: 10px;
+		padding: 10px 10px 10px 15px;
+	}
+
+	.btn-breadcrumb .btn:first-child {
+	  padding: 10px 10px 10px 15px;
+	}
+
+	.btn-breadcrumb .btn:last-child {
+	  padding: 10px 10px 10px 15px;
+	}
+
+}
+
+@media (max-width: 767px){
+	.breadcrumb{
+		background-color: transparent;
+		padding: 0.75rem 1rem 0 1rem;
+		text-align: center;
+	}
+
+	.template1, .template2, 
+	.template2.focus.active, 
+	.template1.focus.active{
+		background-size: contain;
+		width: 100%;
+		height: 200px;
+		
+	}
+}
+@media (min-width: 768px) and (max-width: 992px){
+	.breadcrumb{
+		background-color: transparent;
+		padding: 0.75rem 1rem 0 1rem;
+		text-align: center;
+	}
+
+
+	.template1, .template2, 
+	.template2.focus.active, 
+	.template1.focus.active{
+		background-size: contain;
+		width: 250px;
+		height: 200px;
+		
+	}
+
+}
+@media (min-width: 992px) and (max-width: 1024px){
+	.breadcrumb{
+		background-color: transparent;
+		padding: 0.75rem 1rem 0 1rem;
+		text-align: center;
+	}
+
+	.template1, .template2{
+		width: 400px;
+		height: 300px;
+		
+	}
+
+}
+@media (min-width: 1025px){
+	.breadcrumb{
+		background-color: transparent;
+		padding: 0.75rem 1rem 0 1rem;
+		text-align: center;
+	}
+
+	.template1, template2{
+		min-height: 300px;
+	}
+}

@@ -1,0 +1,35 @@
+body{
+	background-color: #443737;
+	color: #ffffff;
+}
+
+.text-muted{
+	color: #ffffff !important;
+}
+
+.btn-outline-secondary{
+	color: #ffffff;
+	border-color: #ffffff;
+}
+
+.blog-footer{
+	background-color: #383030 !important;
+	color: #ffffff !important;	
+}
+
+.text-dark{
+	color: #ffffff !important;
+}
+
+.add-on{
+	margin-right: 10px;
+}
+
+.add-on > input.form-control{
+	border-radius: 5px 0 0 5px;
+}
+
+.btn.btn-default{
+	padding: 6px 10px;
+	border-radius: 0 5px 5px 0;
+}
