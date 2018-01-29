@@ -54,7 +54,7 @@
                             <button type="button" onclick="window.location='<?php echo base_url()?>post/update/<?php echo $value['id']; ?>'; " class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                             Update
                             </button>
-                            <button type="button"  onclick="window.location='<?php echo base_url()?>post/delete/<?php echo $value['id']; ?>'; " class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+                            <button type="button" onclick="deletepost('<?php echo $value['id'] ?>','<?php echo $value['post_title']?>')" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
                             Delete
                             </button>
                         </div>
@@ -82,3 +82,14 @@
         </div>
       </div>
     </section>
+
+    <script type="text/javascript">
+        function deletepost(id, namepost){
+          console.log(id, namepost);
+          var conf = confirm('Are you sure to delete data '+namepost+'?');
+
+          if(conf){
+               window.location='<?php echo base_url()?>post/delete/'+id;
+          }
+        }
+    </script>

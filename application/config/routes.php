@@ -68,7 +68,10 @@ $route['post/update/(:num)'] = 'pages/management/createpost/$1';
 $route['post/delete/(:num)'] = 'pages/management/deletepost/$1';
 
 
-$route['tags'] = 'pages/management/tags';
+// $route['tags'] = 'pages/management/tags';
 $route['tags/create'] = 'pages/management/createtags';
 $route['tags/update/(:num)'] = 'pages/management/createtags/$1';
-$route['tags/delete/(:num)'] = 'pages/management/deletetags/$1';
+$route['tags/delete'] = 'pages/management/deletetags';
+
+//Search
+$route['search'] = 'pages/management/searchpost';

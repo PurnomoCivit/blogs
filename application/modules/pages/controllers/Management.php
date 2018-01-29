@@ -93,7 +93,7 @@ class Management extends MX_Controller
 					$data['post'][$keyPost]['tag_name'] = $tags;
 				}
 			}
-
+ 
 		}else{
 			$data['post'][0] = array(
 				"post_title"	=> "",
@@ -153,21 +153,20 @@ class Management extends MX_Controller
 
         try {
         	$saved = $this->Post_model->save($save);
-        	
-        	$getTags = explode(",", $input['tag']);
 
         	$tags = array();
 
-        	for($key = 0; $key < count($getTags); $key++){
+        	foreach ($input['tag'] as $keyTags => $valueTags) {
+        		# code...
 	        	$tags[] = array(
+	        		"id"	=> $keyTags,
 	        		"id_post" => $saved,
-	        		"tag_name" => $getTags[$key],
-	        		"created_at" => date("Y-m-d H:i:s")
+	        		"tag_name" => $valueTags,
 	        	);
         	}
 
         	try {
-        		$this->Tags_model->save($tags);
+        		$this->Tags_model->updatebatch($tags);
         		$this->session->set_flashdata("success", "Data has been created.");
         		
         		redirect("post");
@@ -188,10 +187,9 @@ class Management extends MX_Controller
 
 		$input = $this->security->xss_clean($this->input->post());
 
-		var_dump($input);exit();
 	    $data = array();
 
-		if(!empty($input['thumbnail'])){
+		if(!empty($_FILES['thumbnail'])){
 			$config['upload_path']          = './assets/media/';
 	        $config['allowed_types']        = 'gif|jpg|png';
 
@@ -217,6 +215,30 @@ class Management extends MX_Controller
     	);
 
     	try {
+
+    		$saved = $this->Post_model->update($input['id'], $update);
+
+        	$tags = array();
+
+        	foreach ($input['tag'] as $keyTags => $valueTags) {
+        		# code...
+	        	$tags[] = array(
+	        		"id"	=> $keyTags,
+	        		"id_post" => $saved,
+	        		"tag_name" => $valueTags,
+	        	);
+        	}
+
+        	try {
+        		$this->Tags_model->updatebatch($tags);
+        		$this->session->set_flashdata("success", "Data has been created.");
+        		
+        		redirect("post");
+        	} catch (Exception $e) {
+	        	log_message("error", $e->getMessage());
+	        	$this->session->set_flashdata("error", $e->getMessage());
+	        	return false;
+        	}
     		
     	} catch (Exception $e) {
     		log_message("error", $e->getMessage());
@@ -241,6 +263,50 @@ class Management extends MX_Controller
 		}
 	}
 
+	public function createtags(){
+		$input = $this->security->xss_clean($this->input->get());
 
+		$data = array(
+			"tag_name" => $input['tag_name'],
+			"created_at" => date("Y-m-d H:i:s"),
+		);
 
-}?>
+		if(!empty($input['tag_name'])){
+			$id = $this->Tags_model->insert($data);
+
+			exit(json_encode($id)); 
+		}else{
+			exit(FALSE);
+		}
+	}
+
+	public function deletetags(){
+		$input = $this->security->xss_clean($this->input->get());
+
+		if(!empty($input['id'])){
+			$id = $this->Tags_model->delete($input['id']);
+
+			exit(json_encode($id)); 
+		}else{
+			exit(FALSE);
+		}
+	}
+
+	public function searchpost(){
+		$input = $this->security->xss_clean($this->input->get());
+
+		$inputExplode = explode(" ", $input['search']);
+		foreach ($inputExplode as $keyExplode => $valueExplode) {
+			$conditionpost = "post_description LIKE '%".$valueExplode."%' OR post_title LIKE '%".$valueExplode."%'";
+			$post = array($this->Post_model->search($conditionpost));
+
+			$conditiontags = "tag_name LIKE '%".$valueExplode."%'";
+			$tags = array($this->Tags_model->search($conditiontags));
+		}
+
+		var_dump($tags, $post);exit();
+	}
+
+}
+
+?>

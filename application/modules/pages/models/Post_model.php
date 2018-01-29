@@ -12,8 +12,10 @@ class Post_model extends CI_Model
 		$data = array();
 
 		if(!empty($condition)){
+			$this->db->order_by("created_at", "DESC");
 			$data = $this->db->get_where($this->_table_name, $condition);
 		}else{
+			$this->db->order_by("created_at", "DESC");
 			$data = $this->db->get($this->_table_name);
 		}
 		return $data->result_array();
@@ -36,6 +38,11 @@ class Post_model extends CI_Model
 
 		$this->db->where('id_post', $id);
 		return $this->db->delete('tags');
+	}
+
+	public function search($data){
+		$this->db->where($data);
+		return $this->db->get($this->_table_name)->result_array();
 	}
 	
 }

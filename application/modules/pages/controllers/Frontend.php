@@ -73,9 +73,10 @@ class Frontend extends MX_Controller
 	public function choosetemplate(){
 		$checkSetting = $this->__checksetting();
 
-		if(!empty($checkSetting)){
+		if(empty($checkSetting)){
 			redirect("/");
 		}
+
 		$data['currentpage'] = "choose-template";
 		$data['title'] = "Create Your Own Blog - FlagBlog";
 
@@ -83,7 +84,7 @@ class Frontend extends MX_Controller
 			$this->__updatetemplate();
 		}
 
-		$this->load->view("frontend/choosetemplate", $data);
+		$this->load->view("frontend/Choosetemplate", $data);
 	}
 
 	private function __updatetemplate(){
@@ -106,7 +107,7 @@ class Frontend extends MX_Controller
 	public function finish(){
 		$checkSetting = $this->__checksetting();
 
-		if(!empty($checkSetting)){
+		if(empty($checkSetting)){
 			redirect("/");
 		}
 		$data['currentpage']	= "finish";

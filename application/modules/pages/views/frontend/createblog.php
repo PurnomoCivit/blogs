@@ -50,8 +50,7 @@
 			    		</div>
 			    		<div class="form-group">
 			    			<label for="description">Blog Description* :</label>
-		    				<textarea class="form-control" name="blog_description"  placeholder="Your Blog Description"  id="description" required>
-		    				</textarea>
+		    				<textarea class="form-control" name="blog_description"  placeholder="Your Blog Description"  id="description" required></textarea>
 		    				
 			    		</div>
 			    		<div class="form-group">
