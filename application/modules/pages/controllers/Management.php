@@ -295,16 +295,17 @@ class Management extends MX_Controller
 	public function searchpost(){
 		$input = $this->security->xss_clean($this->input->get());
 
+		$data['setting'] = $this->Setting_model->select();
 		$inputExplode = explode(" ", $input['search']);
 		foreach ($inputExplode as $keyExplode => $valueExplode) {
 			$conditionpost = "post_description LIKE '%".$valueExplode."%' OR post_title LIKE '%".$valueExplode."%'";
-			$data['post'] = $this->Post_model->search($conditionpost);
+			$data['postsearch'] = $this->Post_model->search($conditionpost);
 
 			$conditiontags = "tag_name LIKE '%".$valueExplode."%'";
-			$data['tags'] = $this->Tags_model->search($conditiontags);
+			$data['tagssearch'] = $this->Tags_model->search($conditiontags);
 		}
 
-		$this->template->load("template_admin", "frontend/search", $data);
+		$this->template->load($data['setting']['templateId'], "frontend/search", $data);
 	}
 
 }

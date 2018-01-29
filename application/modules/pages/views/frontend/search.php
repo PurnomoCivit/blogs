@@ -1,6 +1,6 @@
       <div class="row mb-2">
         <?php if(!empty($post) || !empty($tags)){ 
-          foreach ($tags as $keyTags => $valueTags) { ?>
+          foreach ($tagssearch as $keyTags => $valueTags) { ?>
         <div class="col-md-3">
           <div class="card flex-md-row mb-4 box-shadow h-md-250">
             <div class="card-body d-flex flex-column align-items-start">
@@ -11,7 +11,7 @@
             <img class="card-img-right flex-auto d-none d-md-block" data-src="<?php echo base_url(); ?>assets/img/DSCF1188.jpg" alt="Card image cap">
           </div>
         </div>
-        <?php } foreach ($variable as $key => $value) { ?>
+        <?php } foreach ($postsearch as $key => $value) { ?>
        <div class="col-md-3">
           <div class="card flex-md-row mb-4 box-shadow h-md-250">
             <div class="card-body d-flex flex-column align-items-start">

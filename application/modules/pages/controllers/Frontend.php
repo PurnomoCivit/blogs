@@ -24,7 +24,7 @@ class Frontend extends MX_Controller
 
 		$data['tags'] = $this->Tags_model->select();
 		$data['post'] = $this->Post_model->select();
-		$data['setting'] = $this->Setting_model->select();
+		$data['setting'] = $checkSetting;
 
 		$data['title'] = $data['setting']['blog_title']." | Blogs";
 		$this->template->load($checkSetting['templateId'], 'frontend/home', $data);
