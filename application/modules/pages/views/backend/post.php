@@ -11,7 +11,17 @@
         <li class="active">Data All Post</li>
       </ol>
     </section>
-
+      <?php if(!empty($success)){ ?>
+        <div class="callout callout-info">
+          <p><?php echo $success ?></p>
+        </div>
+      <?php }
+        if(!empty($error)){ ?>
+        
+        <div class="callout callout-danger">
+          <p><?php echo $error ?></p>
+        </div>
+        <?php } ?>
 
     <!-- Main content -->
     <section class="content">

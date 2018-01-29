@@ -298,13 +298,13 @@ class Management extends MX_Controller
 		$inputExplode = explode(" ", $input['search']);
 		foreach ($inputExplode as $keyExplode => $valueExplode) {
 			$conditionpost = "post_description LIKE '%".$valueExplode."%' OR post_title LIKE '%".$valueExplode."%'";
-			$post = array($this->Post_model->search($conditionpost));
+			$data['post'] = $this->Post_model->search($conditionpost);
 
 			$conditiontags = "tag_name LIKE '%".$valueExplode."%'";
-			$tags = array($this->Tags_model->search($conditiontags));
+			$data['tags'] = $this->Tags_model->search($conditiontags);
 		}
 
-		var_dump($tags, $post);exit();
+		$this->template->load("template_admin", "frontend/search", $data);
 	}
 
 }
