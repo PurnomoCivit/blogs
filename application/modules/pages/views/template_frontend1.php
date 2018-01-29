@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="assets/img/favicon/favicon.ico">
+    <meta name="description" content="<?php echo $meta['description']; ?>">
+    <meta name="keywords" content="<?php echo $meta['keywords']; ?>">
+    <meta name="author" content="<?php echo $meta['author'] ?>">
+    <link rel="icon" href="<?php echo base_url().'assets/img/favicon/favicon.ico';?>">
 
     <title><?php echo $title ?></title>
 
@@ -37,20 +37,23 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="<?php echo base_url("assets/css/blog.css"); ?>" rel="stylesheet">
+    <link href="<?php echo base_url("assets/css/main1.css"); ?>" rel="stylesheet">
     
     <div class="container">
       <header class="blog-header py-3">
         <div class="row flex-nowrap justify-content-between align-items-center">
-          <div class="col-4 pt-1">
-            <a class="text-muted" href="#">Facebook</a>
-          </div>
-          <div class="col-4 text-center">
-            <a class="blog-header-logo text-dark" href="#">Large</a>
+          <div class="col-4">
+            <a class="blog-header-logo text-dark" href="<?php echo base_url(); ?>"><?php echo $setting['blog_title']; ?></a>
           </div>
           <div class="col-4 d-flex justify-content-end align-items-center">
-            <a class="text-muted" href="#">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
-            </a>
+            <?php echo form_open("search", array("method"=>"GET", "class" => "form-inline")); ?>
+            <div class="form-group add-on">
+              <input class="form-control" placeholder="Search" name="search" id="srch-term" type="text">
+              <div class="input-group-btn">
+                <button class="btn btn-default" type="submit"><i class="ion-search"></i></button>
+              </div>
+            </div>
+            <?php echo form_close(); ?>
             <a class="btn btn-sm btn-outline-secondary" href="sign-in">Sign In</a>
           </div>
         </div>
@@ -58,18 +61,12 @@
 
       <div class="nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="#">World</a>
-          <a class="p-2 text-muted" href="#">U.S.</a>
-          <a class="p-2 text-muted" href="#">Technology</a>
-          <a class="p-2 text-muted" href="#">Design</a>
-          <a class="p-2 text-muted" href="#">Culture</a>
-          <a class="p-2 text-muted" href="#">Business</a>
-          <a class="p-2 text-muted" href="#">Politics</a>
-          <a class="p-2 text-muted" href="#">Opinion</a>
-          <a class="p-2 text-muted" href="#">Science</a>
-          <a class="p-2 text-muted" href="#">Health</a>
-          <a class="p-2 text-muted" href="#">Style</a>
-          <a class="p-2 text-muted" href="#">Travel</a>
+          <?php if(!empty($tags)){ 
+            foreach ($tags as $keyTags => $valueTags) {
+             ?> 
+              <a class="p-2 text-muted" href="<?php echo base_url()."tags-detail/".str_replace(" ", "-", $valueTags['tag_name'])?>">
+                <?php echo $valueTags['tag_name'] ?></a>
+          <?php }} ?>
         </nav>
       </div>
 

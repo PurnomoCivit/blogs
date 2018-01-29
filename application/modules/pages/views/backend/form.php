@@ -3,7 +3,7 @@
     <section class="content-header">
       <h1>
         Form Post
-        <small>Create A Post</small>
+        <small><?php ucfirst($action);?> A Post</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -60,7 +60,7 @@
                     <div id="showOtherTag">
                       <?php if(!empty($post[0]['tag_name'])){ 
                         foreach ($post[0]['tag_name'] as $key => $value) { 
-                          echo '<div class"row"><div class="col-sm-10 padding-bottom"><input type="hidden" class="form-control" name="tag['.$key.']" value="'.$value['tag_name'].'" id="tags" placeholder="Tags"><input type="text" class="form-control" value="'.$value['tag_name'].'" disabled></div><div class="col-sm-2"><button type="button" id="tagdelete" value="'.$value['id'].'" onclick="deleteTags(this.value)" class="btn btn-danger fa fa-trash"></button></div></div>';
+                          echo '<div class"row"><div class="col-sm-10 padding-bottom"><input type="hidden" name="tag['.$key.']" value="'.$value['tag_name'].'" id="tags" placeholder="Tags"><input type="text" class="form-control" value="'.$value['tag_name'].'" disabled></div><div class="col-sm-2"><button type="button" id="tagdelete" value="'.$value['id'].'" onclick="deleteTags(this.value)" class="btn btn-danger fa fa-trash"></button></div></div>';
                         }?>
                       <?php } ?>
                     </div>

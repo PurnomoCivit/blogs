@@ -49,6 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+
 $route['default_controller'] = 'pages/frontend';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
@@ -66,12 +67,16 @@ $route['post'] = 'pages/management/post';
 $route['post/create'] = 'pages/management/createpost';
 $route['post/update/(:num)'] = 'pages/management/createpost/$1';
 $route['post/delete/(:num)'] = 'pages/management/deletepost/$1';
+$route['post-detail/(:any)'] = 'pages/management/postdetail/$1';
 
 
 // $route['tags'] = 'pages/management/tags';
 $route['tags/create'] = 'pages/management/createtags';
-$route['tags/update/(:num)'] = 'pages/management/createtags/$1';
 $route['tags/delete'] = 'pages/management/deletetags';
+$route['tags-detail/(:any)'] = 'pages/management/tagdetail/$1';
 
 //Search
 $route['search'] = 'pages/management/searchpost';
+
+//Setting
+$route['setting'] = 'pages/setting';

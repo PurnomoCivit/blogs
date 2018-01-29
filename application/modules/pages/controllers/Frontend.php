@@ -26,6 +26,12 @@ class Frontend extends MX_Controller
 		$data['post'] = $this->Post_model->select();
 		$data['setting'] = $checkSetting;
 
+		$data['meta'] = array(
+			"description" => $data['setting']['blog_description'],
+			"keywords" => "blog, learn, code",
+			"author" => $data['setting']['blog_title']
+		);
+
 		$data['title'] = $data['setting']['blog_title']." | Blogs";
 		$this->template->load($checkSetting['templateId'], 'frontend/home', $data);
 	}
@@ -116,5 +122,7 @@ class Frontend extends MX_Controller
 		$this->load->view('frontend/finish', $data);
 
 	}
+
+
 
 }

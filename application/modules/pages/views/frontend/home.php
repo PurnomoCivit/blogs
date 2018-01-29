@@ -9,7 +9,7 @@
 
     <main role="main" class="container">
       <div class="row">
-        <div class="col-md-8 blog-main">
+        <div class="col-md-12 blog-main">
           <h3 class="pb-3 mb-4 font-italic border-bottom">
             From the <?php echo $setting['blog_title']; ?>
           </h3>

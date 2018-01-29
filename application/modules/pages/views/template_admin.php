@@ -207,6 +207,14 @@
       'autoWidth'   : false
     })
   })
+
+  <?php 
+    if(!empty($success)){ ?>
+      $("#success").delay(1000).hide(500);
+    <?php }
+    if(!empty($error)){ ?>
+      $("#error").delay(1000).hide(500);
+    <?php } ?>
 </script>
 
 </body>

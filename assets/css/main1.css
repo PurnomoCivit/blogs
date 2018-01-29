@@ -1,0 +1,12 @@
+.add-on{
+	margin-right: 10px;
+}
+
+.add-on > input.form-control{
+	border-radius: 5px 0 0 5px;
+}
+
+.btn.btn-default{
+	padding: 6px 10px;
+	border-radius: 0 5px 5px 0;
+}

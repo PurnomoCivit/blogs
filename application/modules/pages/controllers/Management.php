@@ -66,6 +66,9 @@ class Management extends MX_Controller
 			}
 		}
 
+		$data['success'] = $this->session->flashdata("success");
+		$data['error'] = $this->session->flashdata("error");
+
 		$this->template->load("template_admin", "backend/post", $data);
 	}
 
@@ -299,13 +302,77 @@ class Management extends MX_Controller
 		$inputExplode = explode(" ", $input['search']);
 		foreach ($inputExplode as $keyExplode => $valueExplode) {
 			$conditionpost = "post_description LIKE '%".$valueExplode."%' OR post_title LIKE '%".$valueExplode."%'";
-			$data['postsearch'] = $this->Post_model->search($conditionpost);
+			$postsearch = $this->Post_model->search($conditionpost);
+			for($key = 0; $key < count($postsearch); $key++){
+				$checkTags = $this->Tags_model->select(array("id_post"=>$postsearch[$key]['id']));
+				$tag = array();
+				foreach ($checkTags as $keyV => $valueK) {
+					# code...
+					$tag[]	= $valueK['tag_name'];
+				}
+					$postsearch[$key]['tag_name'] = implode(", ", $tag);
+
+			}
+
+			$data['postsearch'] = $postsearch;
 
 			$conditiontags = "tag_name LIKE '%".$valueExplode."%'";
 			$data['tagssearch'] = $this->Tags_model->search($conditiontags);
 		}
 
 		$this->template->load($data['setting']['templateId'], "frontend/search", $data);
+	}
+
+
+	public function tagdetail($slug){
+		
+		$data['setting'] = $this->Setting_model->select();
+
+		$data['tags'] = $this->Tags_model->select(array("tag_name" => str_replace("-", " ", $slug)));
+
+		$data['post'] = $this->Post_model->select(array("id" => $data['tags'][0]['id_post']));
+
+
+		$data['meta'] = array(
+			"description" => substr($data['tags'][0]['tag_name'], 0, 150),
+			"keywords" => $data['tags'][0]['tag_name'],
+			"author" => $data['setting']['blog_title']
+		);
+
+		$data['title'] = $data['tags'][0]['tag_name']." | Blog ".$data['setting']['blog_title'];
+		$this->template->load($data['setting']['templateId'], "frontend/tagsdetail", $data);
+	}
+
+	public function postdetail($slug){
+
+		$data['setting'] = $this->Setting_model->select();
+
+		$data['post'] = $this->Post_model->select(array("post_slug" => $slug));
+
+
+		$data['title'] = $data['post'][0]['post_title']." | Blog ".$data['setting']['blog_title'];
+
+		if(!empty($data['post'])){
+			for($key = 0; $key < count($data['post']); $key++){
+				$checkTags = $this->Tags_model->select(array("id_post"=>$data['post'][$key]['id']));
+				$tag = array();
+				foreach ($checkTags as $keyV => $valueK) {
+					# code...
+					$tag[]	= $valueK['tag_name'];
+				}
+					$data['post'][$key]['tag_name'] = implode(", ", $tag);
+			}
+		}else{
+			redirect("/", "404");
+		}
+
+		$data['meta'] = array(
+			"description" => substr($data['post'][0]['post_description'], 0, 150),
+			"keywords" => $data['post'][0]['tag_name'],
+			"author" => $data['setting']['blog_title']
+		);
+
+		$this->template->load($data['setting']['templateId'], "frontend/postdetail", $data);
 	}
 
 }

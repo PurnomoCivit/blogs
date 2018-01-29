@@ -12,13 +12,13 @@
       </ol>
     </section>
       <?php if(!empty($success)){ ?>
-        <div class="callout callout-info">
+        <div class="callout callout-info" id="success">
           <p><?php echo $success ?></p>
         </div>
       <?php }
         if(!empty($error)){ ?>
         
-        <div class="callout callout-danger">
+        <div class="callout callout-danger" id="error">
           <p><?php echo $error ?></p>
         </div>
         <?php } ?>
